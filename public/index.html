@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>BCODMO Data Viewer</title>
+</head>
+<body>
+   <script src="bundle.js"></script>
+
+   <script src="datapackage.js"></script>
+   <div style="padding: 1rem">
+     <bcodmo-data-viewer id="dataViewer"</bcodmo-data-viewer>
+   </div>
+   <script>
+     document.getElementById('dataViewer').setAttribute("datapackage", JSON.stringify(dp))
+   </script>
+</body>
+</html>
