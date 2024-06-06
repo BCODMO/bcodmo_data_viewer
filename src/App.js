@@ -84,25 +84,20 @@ const App = ({ datapackage }) => {
       </h2>
     );
   }
-
-  let fieldTableButtonText = "Hide Field Definitions Table";
-  if (!showFieldTable) {
-    fieldTableButtonText = "Show Field Definitions Table";
-  }
   return (
     <div>
-      <div className="padding-bot-1">
+      <div className="is-flex" style={{ justifyContent: "space-between" }}>
         <h4 className="has-text-weight-bold is-size-4">
           Download <a href={resourceDownloadUrl}>{resourceFilename}</a>
         </h4>
-      </div>
-      <div className="padding-bot-1">
         <button
           onClick={() => setShowFieldTable(!showFieldTable)}
-          className="button is-primary is-outlined is-small margin-bot-1"
+          className="button is-primary is-small margin-bot-1"
         >
-          {fieldTableButtonText}
+          {showFieldTable ? "Hide" : "Show"} Field Information
         </button>
+      </div>
+      <div className="padding-bot-1">
         <div style={{ display: showFieldTable ? "" : "none" }}>
           <div
             id="typesGrid"

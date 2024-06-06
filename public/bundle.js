@@ -60224,22 +60224,21 @@ For more info see: https://www.ag-grid.com/javascript-grid/modules/`;
 	      className: "has-text-danger has-text-centered is-size-2"
 	    }, "There was an error: ", error);
 	  }
-	  let fieldTableButtonText = "Hide Field Definitions Table";
-	  if (!showFieldTable) {
-	    fieldTableButtonText = "Show Field Definitions Table";
-	  }
 	  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-	    className: "padding-bot-1"
+	    className: "is-flex",
+	    style: {
+	      justifyContent: "space-between"
+	    }
 	  }, /*#__PURE__*/React.createElement("h4", {
 	    className: "has-text-weight-bold is-size-4"
 	  }, "Download ", /*#__PURE__*/React.createElement("a", {
 	    href: resourceDownloadUrl
-	  }, resourceFilename))), /*#__PURE__*/React.createElement("div", {
-	    className: "padding-bot-1"
-	  }, /*#__PURE__*/React.createElement("button", {
+	  }, resourceFilename)), /*#__PURE__*/React.createElement("button", {
 	    onClick: () => setShowFieldTable(!showFieldTable),
-	    className: "button is-primary is-outlined is-small margin-bot-1"
-	  }, fieldTableButtonText), /*#__PURE__*/React.createElement("div", {
+	    className: "button is-primary is-small margin-bot-1"
+	  }, showFieldTable ? "Hide" : "Show", " Field Information")), /*#__PURE__*/React.createElement("div", {
+	    className: "padding-bot-1"
+	  }, /*#__PURE__*/React.createElement("div", {
 	    style: {
 	      display: showFieldTable ? "" : "none"
 	    }
