@@ -1,5 +1,6 @@
 import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import replace from "@rollup/plugin-replace";
 import postcss from "rollup-plugin-postcss";
@@ -12,7 +13,6 @@ export default {
     format: "iife",
   },
   plugins: [
-    //nodePolyfills(/* options */),
     nodeResolve({
       extensions: [".js", ".jsx"],
     }),
@@ -25,9 +25,11 @@ export default {
       plugins: [],
     }),
     commonjs({}),
+    resolve(),
     replace({
       preventAssignment: false,
       "process.env.NODE_ENV": '"development"',
     }),
+    nodePolyfills(/* options */),
   ],
 };
