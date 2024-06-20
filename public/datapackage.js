@@ -1,620 +1,256 @@
 const dp = {
-  "bcodmo:": {
-    collaborators: [
-      {
-        affiliation_at_event: "adf",
-        affiliation_current: "",
-        email: "df",
-        firstName: "Conrad",
-        lastName: "Schloer",
-        middleName: "",
-        orcid: "0000-0001-9414-722X",
-        phone_number: "",
-        role: ["Co-Principal Investigator"],
-        submitter: true,
-      },
-    ],
-    datasets: [
-      {
-        datasetId: "1234",
-        datasetShortName: "",
-        primaryDataFiles: ["MjGollGo0Emt5mwR"],
-        resources: [
-          "MjGollGo0Emt5mwR",
-          "KODVXl86W4Ei8Y2",
-          "xGgrqW6V9YXCEk1",
-          "oY1gRWZAQlYfl2YR",
-        ],
-      },
-      {
-        datasetId: "1234564567",
-        datasetShortName: "",
-        primaryDataFiles: ["ElwVOLqKyAOI0vVP"],
-        resources: ["ElwVOLqKyAOI0vVP"],
-      },
-      {
-        datasetId: "123456",
-        datasetShortName: "",
-        primaryDataFiles: ["oY1gRWZAQlYfl2YR"],
-        resources: ["oY1gRWZAQlYfl2YR"],
-      },
-      {
-        datasetId: "1234e",
-        datasetShortName: "",
-        primaryDataFiles: null,
-        resources: ["NxqL5A8JNY6uNA4v"],
-      },
-      {
-        datasetId: "test",
-        datasetShortName: "",
-        primaryDataFiles: null,
-        resources: ["8qJKvDog9vpfzZor"],
-      },
-      {
-        datasetId: "test",
-        datasetShortName: "",
-        primaryDataFiles: ["g5zX2zXPYlWfY3YO"],
-        resources: ["g5zX2zXPYlWfY3YO"],
-      },
-    ],
-    history: [
-      {
-        text: "The dataset was created by Conrad Schloer",
-        timestamp: 1673877923,
-      },
-      {
-        text: "The metadata fields '[dataset_name, project, data_processing, request_data_restriction_release_date, geospatial_extent, location, methodology, problems, request_data_restriction, funding, related_publications, parameter_names, keywords, dataset_description, temporal_bounds, cruise_or_deployment, instruments]' were updated by Conrad Schloer",
-        timestamp: 1673877929,
-      },
-      {
-        text: "The collaborator section was updated by Conrad Schloer",
-        timestamp: 1673877929,
-      },
-      {
-        text: "The collaborator section was updated by Conrad Schloer",
-        timestamp: 1673877936,
-      },
-      {
-        text: "Marked ready for review by Conrad Schloer",
-        timestamp: 1673877938,
-      },
-      {
-        text: "The files '[test1.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1675777856,
-      },
-      {
-        text: "The files '[test1.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1675777862,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1679066788,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1679066794,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1680686914,
-      },
-      {
-        text: "A file was renamed from 'test1.csv' to 'test12345235235.csv' by Conrad Schloer",
-        timestamp: 1685736691,
-      },
-      {
-        text: "The files '[test space.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1690463894,
-      },
-      {
-        text: "The files '[big_data.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1697947280,
-      },
-      {
-        text: "The files '[BCODMO_Formatted.xlsx]' were uploaded by Conrad Schloer",
-        timestamp: 1697947914,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_name]' were updated by Conrad Schloer",
-        timestamp: 1699596029,
-      },
-      {
-        text: "The metadata fields '[dataset_name, keywords]' were updated by Conrad Schloer",
-        timestamp: 1699596124,
-      },
-      {
-        text: "This files with ids '[oY1gRWZAQlYfl2YR]' was submitted to the check in process by Conrad Schloer",
-        timestamp: 1699596191,
-      },
-      {
-        text: "This files with ids '[ElwVOLqKyAOI0vVP]' was submitted to the check in process by Conrad Schloer",
-        timestamp: 1699613912,
-      },
-      {
-        text: "The files '[medium_data.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1700328785,
-      },
-      {
-        text: "The resources '[]' were deleted by Conrad Schloer",
-        timestamp: 1700329163,
-      },
-      {
-        text: "The files '[medium_data.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1700329237,
-      },
-      {
-        text: "The files '[small_data.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1700336029,
-      },
-      {
-        text: "The metadata fields '[dataset_name, keywords]' were updated by Conrad Schloer",
-        timestamp: 1706086186,
-      },
-      {
-        text: "The view metadata page secret was generated by Conrad Schloer",
-        timestamp: 1706369799,
-      },
-      {
-        text: "The resources '[]' were deleted by Conrad Schloer",
-        timestamp: 1711636731,
-      },
-      {
-        text: "The resources '[]' were deleted by Conrad Schloer",
-        timestamp: 1711636753,
-      },
-      {
-        text: "The resources '[]' were deleted by Conrad Schloer",
-        timestamp: 1711636900,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1711706161,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1711706205,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1711706258,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1711706273,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1711706308,
-      },
-      {
-        text: "The files '[pipeline-spec(6).yaml]' were uploaded by Conrad Schloer",
-        timestamp: 1711706653,
-      },
-      {
-        text: "The files '[test_validate_schema.csv]' were uploaded by Conrad Schloer",
-        timestamp: 1712221443,
-      },
-      {
-        text: "The metadata fields '[keywords, dataset_description]' were updated by Conrad Schloer",
-        timestamp: 1713540662,
-      },
-      {
-        text: "The metadata fields '[methodology]' were updated by Conrad Schloer",
-        timestamp: 1713541465,
-      },
-      {
-        text: "The metadata fields '[methodology]' were updated by Conrad Schloer",
-        timestamp: 1713541906,
-      },
-      {
-        text: "The metadata fields '[methodology]' were updated by Conrad Schloer",
-        timestamp: 1713542047,
-      },
-      {
-        text: "The metadata fields '[methodology]' were updated by Conrad Schloer",
-        timestamp: 1713542060,
-      },
-      {
-        text: "The metadata fields '[instruments]' were updated by Conrad Schloer",
-        timestamp: 1713542493,
-      },
-      {
-        text: "These files with ids '[8qJKvDog9vpfzZor]' were submitted to the check in process by Conrad Schloer",
-        timestamp: 1713955033,
-      },
-      {
-        text: "The files '[8_3.pdf]' were uploaded by Conrad Schloer",
-        timestamp: 1713959204,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713959243,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713959273,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713959287,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713959483,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713959643,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713959736,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713959784,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713960448,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713960470,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713960499,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961187,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961344,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961396,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961470,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961533,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961745,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961785,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713961999,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962046,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962096,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962168,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962202,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962290,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962446,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962459,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962781,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962798,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962832,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962868,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713962876,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963036,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963067,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963285,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963296,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963495,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963625,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963652,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963678,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963775,
-      },
-      {
-        text: "The files '[data.json]' were uploaded by Conrad Schloer",
-        timestamp: 1713963802,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713963930,
-      },
-      {
-        text: "The files '[6_2.png]' were uploaded by Conrad Schloer",
-        timestamp: 1713963947,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713964230,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713964289,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713964301,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713964315,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713964370,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713964763,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713965022,
-      },
-      {
-        text: "The files '[6_5.pdf]' were uploaded by Conrad Schloer",
-        timestamp: 1713965048,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713965360,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713965374,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713965382,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713965405,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713965520,
-      },
-      {
-        text: "The files '[7_2.png]' were uploaded by Conrad Schloer",
-        timestamp: 1713966077,
-      },
-      {
-        text: "The files '[7_5.pdf]' were uploaded by Conrad Schloer",
-        timestamp: 1713966191,
-      },
-      {
-        text: "The resources '[pipeline-spec(6).yaml, test_validate_schema.csv, 8_3.pdf, data.json, 6_2.png]' were deleted by Conrad Schloer",
-        timestamp: 1713966212,
-      },
-      {
-        text: "The resources '[6_5.pdf]' were deleted by Conrad Schloer",
-        timestamp: 1713967282,
-      },
-      {
-        text: "The files '[7_2.pdf]' were uploaded by Conrad Schloer",
-        timestamp: 1713967301,
-      },
-      {
-        text: "The files '[6_5.png]' were uploaded by Conrad Schloer",
-        timestamp: 1713967318,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713967333,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1713967361,
-      },
-      {
-        text: "The resources '[6_5.png]' were deleted by Conrad Schloer",
-        timestamp: 1713967394,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1714036258,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1714036362,
-      },
-      {
-        text: "The files from laminar pipeline 'test' were connected to this submission",
-        timestamp: 1714038021,
-      },
-      {
-        text: "The metadata fields '[parameter_names]' were updated by Conrad Schloer",
-        timestamp: 1714042667,
-      },
-      {
-        text: "The state was changed to will_not_publish by Karen Soenen",
-        timestamp: 1714055531,
-      },
-      {
-        text: "The files from laminar pipeline 'test' were connected to this submission",
-        timestamp: 1718728909,
-      },
-      {
-        text: "The files from laminar pipeline 'test' were connected to this submission",
-        timestamp: 1718729733,
-      },
-      {
-        text: "The files from laminar pipeline 'test' were connected to this submission",
-        timestamp: 1718729761,
-      },
-      {
-        text: "The files from laminar pipeline 'test' were connected to this submission",
-        timestamp: 1718729799,
-      },
-    ],
-    metadata: {
-      cruise_or_deployment: "",
-      data_processing: "",
-      dataset_description:
-        "<p>1231234</p><p><br></p><p>5abc</p><p><br></p><p>t<strong>es</strong>t<br></p>",
-      dataset_name: "conrad test",
-      funding: "",
-      geospatial_extent: {
-        east: "",
-        north: "",
-        south: "",
-        west: "",
-      },
-      instruments: "<p>\\n\\n\\n\\n<br></p>",
-      keywords: ["", "", ""],
-      location: "",
-      methodology:
-        '<p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><strong><span style="font-size: 12.0pt;font-family:&quot;Arial-BoldMT&quot;,sans-serif;mso-bidi-font-family:Arial-BoldMT; mso-font-kerning:.5pt">Sampling and analytical proceduures: </span></strong><span style="font-size:10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family: ArialMT;mso-font-kerning:.5pt"></span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">The genomes of two different individuals were sequenced with different approaches:</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">1. An individual sampled at Jekyll Island, Georgia:</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">We built a reference genome for the Atlantic silverside through three steps. First, we created a draft assembly using 10x Genomics linked-reads technology (10x Genomics, Pleasanton, CA). Second, we used proximity-ligation data— ChicagoVR (Putnam et al. 2016) and Dovetail</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">Hi-C (Lieberman-Aiden et al. 2009)—from Dovetail Genomics (Santa Cruz, CA) to increase contiguity, break up mis-joins, and orient and join scaffolds into chromosomes. Finally, we used short-insert reads to close gaps in the scaffolded and error-corrected assembly. The data were generated from muscle tissue dissected from two lab-reared F1 offspring of Atlantic silversides collected from the wild on Jekyll Island, GA, USA (N31.02 ,W81.43 ; the southern end of the species distribution range) in May 2017. For 10x Genomics library preparation, we extracted DNA from fresh tissue from one individual using the MagAttract HMW DNA Kit (Qiagen). Prior to library preparation, we selected fragments longer than 30 kb using a BluePippin device (Sage Science). A 10x Genomics library was prepared following standard procedure and sequenced using two lanes of paired-end 150 bp reads on a HiSeq2500 (rapid run mode) at the Biotechnology Resource Center Genomics Facility at Cornell University. To assemble the linked reads, we ran the program Supernova 2.1.1 (Weisenfeld et al. 2017) from 10x Genomics with varying numbers of reads and compared assembly statistics to identify the number of reads that resulted in the most contiguous assembly. Tissue from the second individual was flash frozen in liquid nitrogen and shipped to Dovetail Genomics, where Chicago and Hi-C libraries were prepared for further scaffolding. These long-range libraries were sequenced on one lane of Illumina HiSeqX using paired-end 150 bp reads. Two rounds of scaffolding with HiRiseTM, a software pipeline developed specifically for genome scaffolding with Chicago and Hi-C data, were run to scaffold and error-correct the best 10x Genomics draft assembly using Dovetail long-range data. Finally, the barcode-trimmed 10x Genomics reads were used to close gaps between contigs as the final step of the HiRise pipeline.</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">&nbsp;</span>&nbsp;</p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">2. An individual sampled in Mumford Cove, Connecticut</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">This assembly was a lower-quality draft assembly used to identify structural variants in comparison to the chromosome-level assembly from the individual sampled in Georgia</span><em><span style="font-size:10.0pt; font-family:&quot;Arial-ItalicMT&quot;,sans-serif;mso-bidi-font-family:Arial-ItalicMT; mso-font-kerning:.5pt"></span></em></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><em><span style="font-size: 10.0pt;font-family:&quot;Arial-ItalicMT&quot;,sans-serif;mso-bidi-font-family:Arial-ItalicMT; mso-font-kerning:.5pt">&nbsp;</span></em></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">The individual sampled for this assembly was sampled from Mumford Cove, Connecticut (N 41.32 , W 72.02 ) in June 2016. Genomic DNA was extracted from muscle tissue using the DNeasy Blood and Tissue kit (Qiagen) and normalized to 40 ng/ul. We prepared a genomic DNA library using the TruSeq DNA PCR-free library kit (Illumina) following the manufacturer’s protocol for 550 bp insert libraries. The shotgun library was sequenced using paired-end 150 bp reads on an Illumina HiSeq4000. Mate- pair libraries with insert sizes of 3, 5.3, and 8.2 kb were pre- pared at the Huntsman Cancer Institute at the University of Utah using the Nextera Mate Pair Library Prep Kit (Illumina) and sequenced using paired-end 125 bp reads on an Illumina HiSeq2500. We used Trimmomatic 0.36 (Bolger et al. 2014) to remove adapter contamination and low-quality data from both the shotgun and the mate pair libraries and used these filtered reads to assemble a draft assembly and fill assembly gaps with Platanus v.1.2.4 (Kajitani et al. 2014) with the commands assemble, scaffold, and gap_close. Finally,we filtered scaffolds shorter than 1 kb.</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><em><span style="font-size: 10.0pt;font-family:&quot;Arial-ItalicMT&quot;,sans-serif;mso-bidi-font-family:Arial-ItalicMT; mso-font-kerning:.5pt">&nbsp;</span></em></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom:0in;line-height:normal;mso-pagination: none;mso-layout-grid-align:none;text-autospace:none"><span style="font-size: 10.0pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family:ArialMT; mso-font-kerning:.5pt">Further details of the samples and methodology are available in the following publication:</span><em><span style="font-size:10.0pt; font-family:&quot;Arial-ItalicMT&quot;,sans-serif;mso-bidi-font-family:Arial-ItalicMT; mso-font-kerning:.5pt"></span></em></p><p>                                      </p><p class="MsoNormal" style="margin-top:0in;margin-right:58.5pt;margin-bottom: 0in;margin-left:0in;line-height:normal;mso-pagination:none;mso-layout-grid-align: none;text-autospace:none"><span style="font-size:10.5pt;font-family:&quot;ArialMT&quot;,sans-serif; mso-bidi-font-family:ArialMT;mso-font-kerning:.5pt">Tigano, A., Jacobs, A., Wilder, A. P., Nand, A., Zhan, Ye, Dekker, J., and Therkildsen, N. O. 2021. Chromosome-level assembly of the Atlantic silverside genome reveals extreme levels of sequence diversity and structural genetic variation. </span><strong><span style="font-size:10.5pt;font-family:&quot;Arial-BoldMT&quot;,sans-serif;mso-bidi-font-family: Arial-BoldMT;mso-font-kerning:.5pt">Genome Biology and Evolution</span></strong><span style="font-size:10.5pt;font-family:&quot;ArialMT&quot;,sans-serif;mso-bidi-font-family: ArialMT;mso-font-kerning:.5pt"> 13, evab163</span></p>',
-      parameter_names:
-        "<p>adadf123adfafafdkjhDSasd123asdsdgasdasd<br></p><p>fadfafdadfasdasddasdfadadffadfaadfdfasdadfasdasfadfasdasdkjhkj<br></p>",
-      problems: "",
-      project: "",
-      request_data_restriction: false,
-      request_data_restriction_release_date: "",
-      temporal_bounds: {
-        from: "",
-        to: "",
-      },
-    },
-    state: "will_not_publish",
-    submissionId: "WnVQJMP6GQ7SN4yz",
-  },
-  created: "2023-01-16T14:05:23Z",
-  name: "conrad_test",
+  name: "datapackage",
   profile: "data-package",
   resources: [
     {
-      "bcodmo:": {
-        category: "laminar",
-        laminarTitle: "test",
-        objectKey: "test2/test2/data/res1.csv",
-        publicDescription:
-          "Primary data file for dataset ID test2, version test2",
-        publicShowTableView: true,
-        resourceGroupId: "qjN8ZN8XApoizOjX",
-        resourceId: "g5zX2zXPYlWfY3YO",
-        submissionId: "WnVQJMP6GQ7SN4yz",
-        title: "",
-      },
-      created: "2024-06-18T16:56:37Z",
-      description: "Primary data file for dataset ID test2, version test2",
-      encoding: "utf-8",
-      fileType: "Comma Separated Values (.csv)",
-      fileTypeId: "192",
-      filename: "res1.csv",
+      name: "dataset-926873",
+      filename:
+        "926873_v1_dissolved_hg_speciation_california_current_system.csv",
       mediatype: "text/csv",
-      modified: "2024-06-18T16:56:37Z",
-      name: "g5zx2zxpylwfy3yo",
-      path: "https://laminar-dump.s3.dualstack.us-east-1.amazonaws.com/test2/test2/data/res1.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAXLAGZQJYQPMKEEEQ%2F20240618%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240618T165809Z&X-Amz-Expires=604800&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHAaCXVzLWVhc3QtMSJIMEYCIQCYqt%2BKuhw%2B1XQZMBeCMBhDDyIu4mdGwQ2ffJTMmjGCewIhAM6EBG5cQZh6SHoDzEG3q1EpWpt1LmVwwecd%2F3dmQUoDKvUDCBkQBBoMNTA0NjcyOTExOTg1Igxqj2VVhAylvoQdd7Mq0gMv%2B6lE7v%2BeSnFL8uC2p6rl1wsAS5Iq5JA0NpC3%2FFc3GGlsgbI6brHvieyfUwa6TxqBxv62xH3VDxufPJBekGBwNUxslhlCS7WlI08stcsavNGvlHtHrKgA2weJ8cXKACjNVepH1R4EJsn251R0b9jwBFZ8vsVQYOP4rQ%2FgBY7JyO5MM8OzJNXZNbC%2FSp%2BhZHrTJTHBFZf1bJF9Rki4X76JXtj2WReK1vTgB3f%2BKJGArEylmVO3MAQOdm7w0XrrErrLWzl8rOemTk%2BSVJk95jySfWc4ILgXxxIbwvLQAICCIdWLJm99A0lXGAVrw8csDvy5bLuRMUK%2FJgBBYTC3eJRmIQlU3HvAAEAn%2FQXnCIad%2BF9eqC7WggzKSp2npBKkSulLUaJXjtOIrbQbV4jbS%2B4hSAd1gia680rBmNeIFpSgAdAmXPFQnbs946e5IYtDqg7QVssoceLcsOqvL27dvWlnAWBL7slX5cWQzlBc3WapM3mlyo5lHQG9tYaDWsHrFhDxntmC4FpgZcQ%2BpZdO8h9EDeRQyNxeRFodcqvbmd%2FNn8vV4Q2VPfoJ62C7ruW96P%2FtH479DEZZ0hgegkQb%2Ff%2FWUea%2F3IZ7VtbqnVWR7TqxIljtMPfexrMGOqQB3jJVaVtoLO6c%2BYaYDeaPnu1GPf%2BwXrE5E84Wy54k5YjkpYsumlLmt%2BVN57FEKfA1YF%2BtssPKuhm3F1HxDiv0Ox15qVd63NReU5O75g3TmlnQDH0a0gjkdnWKcOMWraL5hM1IpT20iPadNHcztg%2BT5aZK6bIq3DW7uRNs2WXIqZA4tUtLgnoSNgmEHYLxra5NZteUvdazeeX7DHUOJPjMbdsRklY%3D&X-Amz-SignedHeaders=host&X-Amz-Signature=7fadd2870d4ca733197aa29839536654607f3e112d90b2e31d8de79b334b109a",
+      encoding: "utf-8",
+      size: "24565",
       profile: "tabular-data-resource",
-      schema: {
+      path: "https://datadocs.bco-dmo.org/file/N7GqOBoFj54g20/926873_v1_dissolved_hg_speciation_california_current_system.csv",
+      title: "926873_v1_dissolved_hg_speciation_california_current_system.csv",
+      description: "Primary data file for dataset ID 926873, version 1",
+      "bcodmo:": {
         fields: [
           {
             format: "default",
-            name: "col1",
+            name: "Water_Mass",
+            description: "Identification of water mass\n",
+            units: "unitless",
             type: "string",
           },
           {
             format: "default",
-            name: "col2",
-            type: "integer",
+            name: "Station_Name",
+            description: "Name of the station\n",
+            units: "unitless",
+            type: "string",
           },
           {
-            decimalChar: ".",
+            format: "%Y-%m-%dT%H:%M",
+            name: "ISO_DateTime_PDT",
+            description:
+              "Sampling date and time in ISO 8601 format in Pacific  Daylight Time (PDT) time zone\n",
+            units: "unitless",
+            type: "datetime",
+          },
+          {
+            format: "%Y-%m-%dT%H:%MZ",
+            name: "ISO_DateTime_UTC",
+            description:
+              "Sampling date and time in ISO 8601 format in UTC time zone\n",
+            units: "unitless",
+            type: "datetime",
+          },
+          {
             format: "default",
-            groupChar: "",
-            name: "col3",
+            name: "Latitude",
+            description: "Station latitude, south is negative\n",
+            units: "decimal degrees",
             type: "number",
           },
           {
             format: "default",
-            name: "col4",
+            name: "Longitude",
+            description: "Station longitude, west is negative\n",
+            units: "decimal degrees",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "Trace_Metal_Cast_Num",
+            description: "Cast number\n",
+            units: "unitless",
+            type: "integer",
+          },
+          {
+            format: "default",
+            name: "Depth_m",
+            description: "Sample depth\n",
+            units: "meters (m)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "Temperature_C",
+            description: "Sample temperature\n",
+            units: "degrees Celsius",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "Salinity_PSU",
+            description: "Sample salinity\n",
+            units: "practical salinity units (PSU)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "Oxygen_umol_kg",
+            description: "Dissolved oxygen concentration\n",
+            units: "micromole per kilogram (umol/kg)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "Density_kg_m3",
+            description: "Water density\n",
+            units: "kilogram per cubed meter (kg/m^3)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "DMHg_fM",
+            description:
+              "Concentration of dimethylmercury; limit of detection = 2\n",
+            units: "femtomolar (fM)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "DMHg_Flag",
+            description:
+              "Data flag, 0 indicates that the data was used in analyses, 1 indicates that the data was removed from subsequent analysis as it was 1.5*IQR above the upper whisker when the data was plotted as a box plot\n",
+            units: "unitless",
+            type: "integer",
+          },
+          {
+            format: "default",
+            name: "Hg0_fM",
+            description:
+              "Concentration of elemental mercury; limit of detection = 40\n",
+            units: "femtomolar (fM)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "Hg0_Flag",
+            description:
+              "Data flag, 0 indicates that the data was used in analyses, 1 indicates that the data was removed from subsequent analysis as it was 1.5*IQR above the upper whisker when the data was plotted as a box plot\n",
+            units: "unitless",
+            type: "integer",
+          },
+          {
+            format: "default",
+            name: "MMHg_fM",
+            description:
+              "Concentration of dissolved monomethylmercury; limit of detection = 11.3\n",
+            units: "femtomolar (fM)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "MMHg_Flag",
+            description:
+              "Data flag, 0 indicates that the data was used in analyses, 1 indicates that the data was removed from subsequent analysis as it was 1.5*IQR above the upper whisker when the data was plotted as a box plot\n",
+            units: "unitless",
+            type: "integer",
+          },
+          {
+            format: "default",
+            name: "THg_pM",
+            description:
+              "Concentration of dissolved total mercury; limit of detection = 0.22\n",
+            units: "picomolar (pM)",
+            type: "number",
+          },
+          {
+            format: "default",
+            name: "THg_Flag",
+            description:
+              "Data flag, 0 indicates that the data was used in analyses, 1 indicates that the data was removed from subsequent analysis as it was 1.5*IQR above the upper whisker when the data was plotted as a box plot\n",
+            units: "unitless",
+            type: "integer",
+          },
+        ],
+      },
+      schema: {
+        fields: [
+          {
+            name: "Water_Mass",
             type: "string",
           },
           {
-            format: "%Y-%m-%dT%H:%M:%SZ",
-            name: "ISO_DateTime_UTC",
-            outputFormat: "%Y-%m-%dT%H:%M:%SZ",
+            name: "Station_Name",
+            type: "string",
+          },
+          {
+            name: "ISO_DateTime_PDT",
             type: "datetime",
           },
+          {
+            name: "ISO_DateTime_UTC",
+            type: "datetime",
+          },
+          {
+            name: "Latitude",
+            type: "number",
+          },
+          {
+            name: "Longitude",
+            type: "number",
+          },
+          {
+            name: "Trace_Metal_Cast_Num",
+            type: "integer",
+          },
+          {
+            name: "Depth_m",
+            type: "number",
+          },
+          {
+            name: "Temperature_C",
+            type: "number",
+          },
+          {
+            name: "Salinity_PSU",
+            type: "number",
+          },
+          {
+            name: "Oxygen_umol_kg",
+            type: "number",
+          },
+          {
+            name: "Density_kg_m3",
+            type: "number",
+          },
+          {
+            name: "DMHg_fM",
+            type: "number",
+          },
+          {
+            name: "DMHg_Flag",
+            type: "integer",
+          },
+          {
+            name: "Hg0_fM",
+            type: "number",
+          },
+          {
+            name: "Hg0_Flag",
+            type: "integer",
+          },
+          {
+            name: "MMHg_fM",
+            type: "number",
+          },
+          {
+            name: "MMHg_Flag",
+            type: "integer",
+          },
+          {
+            name: "THg_pM",
+            type: "number",
+          },
+          {
+            name: "THg_Flag",
+            type: "integer",
+          },
         ],
-        missingValues: ["", "nd", "def", "35.131"],
       },
-      size: 170,
     },
   ],
-  title: "conrad test",
-  updated: "2024-06-18T16:56:39Z",
 };
