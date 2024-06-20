@@ -86,10 +86,13 @@ const pyToJSDateFormats = Object.freeze({
  * @return: the javascript format string
  */
 function convertPYDateFormatToJS(formatStr) {
-  for (let key in pyToJSDateFormats) {
-    formatStr = formatStr.split(key).join(pyToJSDateFormats[key]);
+  if (formatStr) {
+    for (let key in pyToJSDateFormats) {
+      formatStr = formatStr.split(key).join(pyToJSDateFormats[key]);
+    }
+    return formatStr;
   }
-  return formatStr;
+  return "";
 }
 
 const App = ({ datapackage }) => {
