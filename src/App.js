@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import { createGrid } from "ag-grid-community";
+import {
+  ICellRendererComp,
+  ICellRendererParams,
+} from "@ag-grid-community/core";
 import dayjs from "dayjs";
 import "dayjs/plugin/customParseFormat";
 import "./ag-grid.css";
@@ -10,6 +14,15 @@ import "./styles.css";
 const ROW_LIMIT = 50000;
 const ROW_LIMIT_STR = "50,000";
 const PAGE_SIZE = 50;
+
+const byteFormat = (bytes) => {
+  const bytesReplaced = `${bytes}`.replace(/[^0-9.]/g, "");
+  const sizes = ["B", "KB", "MB", "GB", "TB"];
+  const bytesNum = parseInt(bytesReplaced);
+  if (bytesNum <= 0 || isNaN(bytesNum)) return "0 B";
+  const i = Math.floor(Math.log(bytesNum) / Math.log(1024));
+  return (bytesNum / Math.pow(1024, i)).toFixed(2) + " " + sizes[i];
+};
 
 const dateComparator = (format) => {
   const jsFormat = convertPYDateFormatToJS(format);
@@ -95,8 +108,21 @@ function convertPYDateFormatToJS(formatStr) {
   return "";
 }
 
+class CustomLoadingOverlay {
+  // mandatory methods
+  init() {
+    this.eGui = document.createElement("div");
+    this.eGui.innerHTML = `<div class="loader margin-top-1"></div>`;
+  }
+
+  getGui() {
+    return this.eGui;
+  }
+}
+
 const App = ({ datapackage }) => {
   const [resourceFilename, setResourceFilename] = useState("");
+  const [resourceSize, setResourceSize] = useState("");
   const [resourceDownloadUrl, setResourceDownloadUrl] = useState("");
 
   const [columnDefs, setColumnDefs] = useState([]);
@@ -121,6 +147,7 @@ const App = ({ datapackage }) => {
         const path = resource.path;
         setError("");
         setResourceFilename(resource.filename);
+        setResourceSize(resource.size);
         setResourceDownloadUrl(path);
 
         let columnDefs = null;
@@ -207,6 +234,7 @@ const App = ({ datapackage }) => {
             sortable: true,
             minWidth: 120,
           },
+          loadingOverlayComponent: CustomLoadingOverlay,
         };
         const eGridDiv = document.querySelector("#grid");
         const api = createGrid(eGridDiv, gridOptions);
@@ -255,7 +283,7 @@ const App = ({ datapackage }) => {
         const typesGridOptions = {
           columnDefs: [
             { field: "Field" },
-            { field: "Description", minWidth: 600 },
+            { field: "Description" },
             { field: "Type", headerName: "Data Type", maxWidth: 100 },
             { field: "Format" },
           ],
@@ -292,30 +320,61 @@ const App = ({ datapackage }) => {
   }
   return (
     <div>
-      <div className="is-flex" style={{ justifyContent: "space-between" }}>
-        <h4 className="has-text-weight-bold is-size-4">
-          Download <a href={resourceDownloadUrl}>{resourceFilename}</a>
-        </h4>
-        <button
-          onClick={() => setShowFieldTable(!showFieldTable)}
-          className="button is-primary is-small margin-bot-1"
+      <div
+        className="is-flex"
+        style={{ justifyContent: "space-between", flexWrap: "wrap" }}
+      >
+        <div
+          className="column is-flex "
+          style={{
+            flexWrap: "wrap-reverse",
+            alignItems: "center",
+            maxWidth: "100%",
+          }}
         >
-          {showFieldTable ? "Hide" : "Show"} Field Information
-        </button>
-      </div>
-      <div className="padding-bot-1">
-        <div style={{ display: showFieldTable ? "" : "none" }}>
-          <div
-            id="typesGrid"
-            className="ag-theme-quartz"
+          <a
+            href={resourceDownloadUrl}
+            className="button is-primary margin-right-1"
+          >
+            Download
+            {resourceSize ? ` (${byteFormat(resourceSize)})` : ""}
+          </a>
+          <h4
+            className="is-size-4 margin-right-1"
             style={{
-              height: "250px",
-              width: "100%",
+              wordWrap: "break-word",
+              whiteSpace: "normal",
+              maxWidth: "100%",
             }}
-          ></div>
+          >
+            <span className="is-italic has-text-weight-bold">
+              {resourceFilename}
+            </span>
+          </h4>
         </div>
-        <hr />
+        <div className="column is-narrow">
+          <button
+            onClick={() => setShowFieldTable(!showFieldTable)}
+            className="button is-info"
+          >
+            {showFieldTable ? "Hide" : "Show"} Field Information
+          </button>
+        </div>
       </div>
+      <div
+        className="padding-bot-1"
+        style={{ display: showFieldTable ? "" : "none" }}
+      >
+        <div
+          id="typesGrid"
+          className="ag-theme-quartz"
+          style={{
+            height: "250px",
+            width: "100%",
+          }}
+        ></div>
+      </div>
+      <hr />
       {!!tooLarge && (
         <div className="notification is-warning">
           <strong>
