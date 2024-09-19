@@ -167,7 +167,9 @@ const App = ({ datapackage }) => {
               },
               error: (err) => {
                 setLoading(false);
-                setError("The file download link didn't work :(");
+                setError(
+                  "The file download link didn't work. Please try refreshing the page.",
+                );
               },
               chunkSize: 1024 * 1024,
             });
@@ -243,7 +245,9 @@ const App = ({ datapackage }) => {
           download: true,
           error: (err) => {
             setLoading(false);
-            setError("The file download link didn't work :(");
+            setError(
+              "The file download link didn't work. Please try refreshing the page.",
+            );
           },
           skipEmptyLines: true,
           // Remove header from first line
