@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import { createGrid } from "ag-grid-community";
-import {
-  ICellRendererComp,
-  ICellRendererParams,
-} from "@ag-grid-community/core";
 import dayjs from "dayjs";
 import "dayjs/plugin/customParseFormat";
 import "./ag-grid.css";
