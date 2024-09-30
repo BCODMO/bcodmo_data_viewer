@@ -287,7 +287,13 @@ const App = ({ datapackage }) => {
         const typesGridOptions = {
           columnDefs: [
             { field: "Field" },
-            { field: "Description" },
+            {
+              field: "Description",
+              // This lets us render HTML for the description
+              cellRenderer: function (params) {
+                return params.value ? params.value : "";
+              },
+            },
             { field: "Type", headerName: "Data Type", maxWidth: 100 },
             { field: "Format" },
           ],
