@@ -9,3 +9,5 @@ const app = r2wc(App, {
 });
 
 customElements.define("bcodmo-data-viewer", app);
+
+export default App;
