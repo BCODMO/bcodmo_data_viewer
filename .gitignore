@@ -129,5 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-public/bundle.js
+#public/bundle.js
 public/datapackage.js
