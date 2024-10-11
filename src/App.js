@@ -40,22 +40,20 @@ const dateComparator = (format) => {
 };
 
 const numberComparator = (number1, number2) => {
-  if (number1 === null && number2 === null) {
+  const number1Float = parseFloat(number1);
+  const number2Float = parseFloat(number2);
+
+  if (isNaN(number1Float) && isNaN(number2Float)) {
     return 0;
   }
-  if (isNaN(number1)) {
+
+  if (isNaN(number1Float)) {
     return -1;
   }
-  if (isNaN(number2)) {
+  if (isNaN(number2Float)) {
     return 1;
   }
-  if (number1 === null) {
-    return -1;
-  }
-  if (number2 === null) {
-    return 1;
-  }
-  return number1 - number2;
+  return number1Float - number2Float;
 };
 
 /* Key: Python format
@@ -201,7 +199,10 @@ const App = ({ datapackage }) => {
               case "number":
               case "integer":
                 column["filter"] = "agNumberColumnFilter";
+                column["filterParams"] = {};
                 column["comparator"] = numberComparator;
+                // Commented this out because it is removing precision with trailing zeros. Filtering and sorting seem to work fine
+                /*
                 // Setting the value getter ensures that the string typed cells are processed as numbers for filtering and sorting
                 column["valueGetter"] = (params) => {
                   return (
@@ -209,6 +210,7 @@ const App = ({ datapackage }) => {
                     (parseFloat(params.data[f.name]) == 0 ? 0 : "")
                   );
                 };
+                */
                 break;
             }
             if (allStrings) {
@@ -250,6 +252,7 @@ const App = ({ datapackage }) => {
           beforeFirstChunk: (chunk) =>
             [...chunk.split("\n").slice(1)].join("\n"),
           chunk: (results, parser) => {
+            console.log("CHUNK", results.data);
             setRowData((d) => {
               let rowData = [
                 ...d,
