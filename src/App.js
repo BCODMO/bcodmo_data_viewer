@@ -118,6 +118,7 @@ const App = ({ datapackage }) => {
   const [resourceFilename, setResourceFilename] = useState("");
   const [resourceSize, setResourceSize] = useState("");
   const [resourceDownloadUrl, setResourceDownloadUrl] = useState("");
+  const [complete, setComplete] = useState(false);
 
   const [columnDefs, setColumnDefs] = useState([]);
   const [rowData, setRowData] = useState([]);
@@ -160,6 +161,7 @@ const App = ({ datapackage }) => {
                 parser.abort();
               },
               error: (err) => {
+                setComplete(true);
                 setLoading(false);
                 setError(
                   "The file download link didn't work. Please try refreshing the page.",
@@ -242,7 +244,7 @@ const App = ({ datapackage }) => {
         Papa.parse(path, {
           download: true,
           error: (err) => {
-            setLoading(false);
+            setComplete(true);
             setError(
               "The file download link didn't work. Please try refreshing the page.",
             );
@@ -252,7 +254,6 @@ const App = ({ datapackage }) => {
           beforeFirstChunk: (chunk) =>
             [...chunk.split("\n").slice(1)].join("\n"),
           chunk: (results, parser) => {
-            console.log("CHUNK", results.data);
             setRowData((d) => {
               let rowData = [
                 ...d,
@@ -270,6 +271,7 @@ const App = ({ datapackage }) => {
             });
           },
           complete: () => {
+            setComplete(true);
             // Additional HTML to add scrolling on top
             const horizontalScrollEl = document.querySelector(
               "#grid .ag-body-horizontal-scroll",
@@ -361,7 +363,7 @@ const App = ({ datapackage }) => {
             </span>
           </h4>
         </div>
-        <div className="column is-narrow">
+        <div className="column is-narrow is-flex" style={{ gap: "1rem" }}>
           <button
             onClick={() => setShowFieldTable(!showFieldTable)}
             className="button is-info"
@@ -384,6 +386,15 @@ const App = ({ datapackage }) => {
         ></div>
       </div>
       <hr />
+      {!!rowData.length && !complete && !tooLarge && (
+        <div
+          className="notification is-info is-flex"
+          style={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          The file is still downloading, but the initial rows are being shown...
+          <div className="loader is-small"></div>
+        </div>
+      )}
       {!!tooLarge && (
         <div className="notification is-warning">
           <strong>
