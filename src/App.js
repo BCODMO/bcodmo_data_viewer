@@ -148,7 +148,13 @@ const App = ({ datapackage }) => {
         let columnDefs = null;
         let header = null;
         const allStrings = resource["bcodmo_all-strings"];
-        if (!resource.schema || !resource.schema.fields) {
+        let fields = null;
+        if ("bcodmo:" in resource && resource["bcodmo:"].fields) {
+          fields = resource["bcodmo:"].fields;
+        } else if (resource.schema && resource.schema.fields) {
+          fields = resource.schema.fields;
+        }
+        if (!fields) {
           setLoading(true);
           // We can grab the header from parsing the first 1MB of the file
           header = await new Promise((resolve) => {
@@ -180,8 +186,8 @@ const App = ({ datapackage }) => {
           }));
           setLoading(false);
         } else {
-          header = resource.schema.fields.map((f) => f.name);
-          columnDefs = resource.schema.fields.map((f) => {
+          header = fields.map((f) => f.name);
+          columnDefs = fields.map((f) => {
             const column = {
               field: f.name,
               headerName: f.name,
@@ -288,6 +294,7 @@ const App = ({ datapackage }) => {
         const typesGridOptions = {
           columnDefs: [
             { field: "Field" },
+            { field: "Units" },
             {
               field: "Description",
               // This lets us render HTML for the description
@@ -298,15 +305,17 @@ const App = ({ datapackage }) => {
             { field: "Type", headerName: "Data Type", maxWidth: 100 },
             { field: "Format" },
           ],
-          rowData: !!resource.schema
-            ? resource.schema.fields.map((f) => ({
+          rowData: !!fields
+            ? fields.map((f) => ({
                 Field: f.name,
+                Units: f.units,
                 Type: f.type,
                 Format: default_types.includes(f.format) ? "" : f.format,
                 Description: "undefined" != f.description ? f.description : "",
               }))
             : header.map((h) => ({
                 Field: h,
+                Units: "",
                 Type: "string",
                 Format: "",
                 Description: "",
@@ -346,6 +355,8 @@ const App = ({ datapackage }) => {
           <a
             href={resourceDownloadUrl}
             className="button is-primary margin-right-1"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Download
             {resourceSize ? ` (${byteFormat(resourceSize)})` : ""}
