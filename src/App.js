@@ -20,8 +20,7 @@ const byteFormat = (bytes) => {
   return (bytesNum / Math.pow(1024, i)).toFixed(2) + " " + sizes[i];
 };
 
-const dateComparator = (format) => {
-  const jsFormat = convertPYDateFormatToJS(format);
+const dateComparator = (jsFormat) => {
   return (date1, date2) => {
     if (date1 === null && date2 === null) {
       return 0;
@@ -200,14 +199,31 @@ const App = ({ datapackage }) => {
               case "date":
               case "datetime":
                 column["filter"] = "agDateColumnFilter";
+                const jsFormat = convertPYDateFormatToJS(f.format);
                 column["filterParams"] = {
-                  comparator: dateComparator(f.format),
+                  comparator: dateComparator(jsFormat),
+                };
+                const userTimezoneOffset =
+                  new Date().getTimezoneOffset() * 60000;
+                column["filterValueGetter"] = (params) => {
+                  const val = params.data[f.name];
+                  if (val === null) return null;
+                  const parsedDate = dayjs(val, jsFormat).toDate();
+                  if (parsedDate === null) return null;
+                  return new Date(parsedDate.toDateString());
+                  // TODO handle edge cases between days with UTC, goes to local timezone
                 };
                 break;
               case "number":
               case "integer":
                 column["filter"] = "agNumberColumnFilter";
-                column["filterParams"] = {};
+                column["filterValueGetter"] = (params) => {
+                  return (
+                    parseFloat(params.data[f.name]) ||
+                    (parseFloat(params.data[f.name]) == 0 ? 0 : "")
+                  );
+                };
+
                 column["comparator"] = numberComparator;
                 // Commented this out because it is removing precision with trailing zeros. Filtering and sorting seem to work fine
                 /*
