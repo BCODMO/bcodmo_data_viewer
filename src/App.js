@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import { createGrid } from "ag-grid-community";
 import dayjs from "dayjs";
+import dayjsPluginUTC from "dayjs-plugin-utc";
+dayjs.extend(dayjsPluginUTC);
 import "dayjs/plugin/customParseFormat";
 import "./ag-grid.css";
 import "./bco-dmo.css";
@@ -21,20 +23,32 @@ const byteFormat = (bytes) => {
 };
 
 const dateComparator = (jsFormat) => {
-  return (date1, date2) => {
-    if (date1 === null && date2 === null) {
+  return (queryDate, dataDate) => {
+    if (queryDate === null && dataDate === null) {
       return 0;
     }
-    const parsedDate1 = dayjs(date1, jsFormat).toDate();
-    const parsedDate2 = dayjs(date2, jsFormat).toDate();
+    const parsedQueryDayjs = dayjs(queryDate, jsFormat);
+    let parsedDataDayjs = dayjs.utc(dataDate, jsFormat);
+    if (jsFormat.endsWith("Z")) {
+      const tzOffset = new Date().getTimezoneOffset();
+      parsedDataDayjs = parsedDataDayjs.utcOffset(tzOffset, true);
+    }
 
-    if (date1 === null || parsedDate1 === null) {
+    if (queryDate === null || parsedQueryDayjs === null) {
       return 1;
     }
-    if (date2 === null || parsedDate2 === null) {
+    if (dataDate === null || parsedDataDayjs === null) {
       return -1;
     }
-    return parsedDate2 - parsedDate1;
+
+    if (parsedQueryDayjs.year() !== parsedDataDayjs.year()) {
+      return parsedDataDayjs.year() - parsedQueryDayjs.year();
+    }
+    return (
+      parsedDataDayjs.month() * 40 +
+      parsedDataDayjs.date() -
+      (parsedQueryDayjs.month() * 40 + parsedQueryDayjs.date())
+    );
   };
 };
 
@@ -202,16 +216,6 @@ const App = ({ datapackage }) => {
                 const jsFormat = convertPYDateFormatToJS(f.format);
                 column["filterParams"] = {
                   comparator: dateComparator(jsFormat),
-                };
-                const userTimezoneOffset =
-                  new Date().getTimezoneOffset() * 60000;
-                column["filterValueGetter"] = (params) => {
-                  const val = params.data[f.name];
-                  if (val === null) return null;
-                  const parsedDate = dayjs(val, jsFormat).toDate();
-                  if (parsedDate === null) return null;
-                  return new Date(parsedDate.toDateString());
-                  // TODO handle edge cases between days with UTC, goes to local timezone
                 };
                 break;
               case "number":
