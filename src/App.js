@@ -167,7 +167,7 @@ const App = ({ datapackage }) => {
         } else if (resource.schema && resource.schema.fields) {
           fields = resource.schema.fields;
         }
-        if (!fields) {
+        if (!fields || !fields.length) {
           setLoading(true);
           // We can grab the header from parsing the first 1MB of the file
           header = await new Promise((resolve) => {
