@@ -162,12 +162,31 @@ const App = ({ datapackage }) => {
         let header = null;
         const allStrings = resource["bcodmo_all-strings"];
         let fields = null;
-        if ("bcodmo:" in resource && resource["bcodmo:"].fields) {
-          fields = resource["bcodmo:"].fields;
-        } else if (resource.schema && resource.schema.fields) {
+        // There are three places we can get field definitions from
+        // 1. resource.schema.fields
+        //    - From here we use the field definitions for the units table
+        //    AND for the main table column order/typing
+        //
+        // 2. resource["bcodmo"].fields
+        //    - From here we use the field definitions for the units table
+        //    BUT we stream the first row to get the main table column order.
+        //    Main table columns will all be strings
+        //
+        // 3. No fields
+        //    - We stream the first rows to get the units table (all strings)
+        //    and the main table column order (all strings).
+        //
+        let streamHeader = true;
+        if (resource.schema && resource.schema.fields) {
           fields = resource.schema.fields;
+          streamHeader = false;
+        } else if ("bcodmo:" in resource && resource["bcodmo:"].fields) {
+          fields = resource["bcodmo:"].fields;
         }
-        if (!fields || !fields.length) {
+        if (streamHeader) {
+          // If there are no fields, or if the fields come from `["bcodmo:"].fields`,
+          // we pull the header from the first lines of the file and use that
+
           setLoading(true);
           // We can grab the header from parsing the first 1MB of the file
           header = await new Promise((resolve) => {
