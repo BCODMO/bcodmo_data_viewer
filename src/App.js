@@ -127,6 +127,54 @@ class CustomLoadingOverlay {
   }
 }
 
+const generateAgGridCol = (f, allStrings) => {
+  const column = {
+    field: f.name,
+    headerName: f.name,
+    headerTooltip: f.name,
+    filter: "agTextColumnFilter",
+    resizable: true,
+    sortable: true,
+  };
+  switch (f.type) {
+    case "date":
+    case "datetime":
+      column["filter"] = "agDateColumnFilter";
+      const jsFormat = convertPYDateFormatToJS(f.format);
+      column["filterParams"] = {
+        comparator: dateComparator(jsFormat),
+      };
+      break;
+    case "number":
+    case "integer":
+      column["filter"] = "agNumberColumnFilter";
+      column["filterValueGetter"] = (params) => {
+        return (
+          parseFloat(params.data[f.name]) ||
+          (parseFloat(params.data[f.name]) == 0 ? 0 : "")
+        );
+      };
+
+      column["comparator"] = numberComparator;
+      // Commented this out because it is removing precision with trailing zeros. Filtering and sorting seem to work fine
+      /*
+                // Setting the value getter ensures that the string typed cells are processed as numbers for filtering and sorting
+                column["valueGetter"] = (params) => {
+                  return (
+                    parseFloat(params.data[f.name]) ||
+                    (parseFloat(params.data[f.name]) == 0 ? 0 : "")
+                  );
+                };
+                */
+      break;
+  }
+  if (allStrings) {
+    column.sortable = false;
+    column.filter = "";
+  }
+  return column;
+};
+
 const App = ({ datapackage }) => {
   const [resourceFilename, setResourceFilename] = useState("");
   const [resourceSize, setResourceSize] = useState("");
@@ -170,7 +218,7 @@ const App = ({ datapackage }) => {
         // 2. resource["bcodmo"].fields
         //    - From here we use the field definitions for the units table
         //    BUT we stream the first row to get the main table column order.
-        //    Main table columns will all be strings
+        //    We then try to match fields from the first row with fields in fields object
         //
         // 3. No fields
         //    - We stream the first rows to get the units table (all strings)
@@ -216,55 +264,27 @@ const App = ({ datapackage }) => {
             resizable: true,
             sortable: !allStrings,
           }));
+          if (fields) {
+            const fieldsDict = fields.reduce((acc, field) => {
+              acc[field.name] = field;
+              return acc;
+            }, {});
+            columnDefs = columnDefs.map((columnDef) => {
+              if (columnDef.field in fieldsDict) {
+                return generateAgGridCol(
+                  fieldsDict[columnDef.field],
+                  allStrings,
+                );
+              }
+              return columnDef;
+            });
+            // TODO
+          }
           setLoading(false);
         } else {
           header = fields.map((f) => f.name);
           columnDefs = fields.map((f) => {
-            const column = {
-              field: f.name,
-              headerName: f.name,
-              headerTooltip: f.name,
-              filter: "agTextColumnFilter",
-              resizable: true,
-              sortable: true,
-            };
-            switch (f.type) {
-              case "date":
-              case "datetime":
-                column["filter"] = "agDateColumnFilter";
-                const jsFormat = convertPYDateFormatToJS(f.format);
-                column["filterParams"] = {
-                  comparator: dateComparator(jsFormat),
-                };
-                break;
-              case "number":
-              case "integer":
-                column["filter"] = "agNumberColumnFilter";
-                column["filterValueGetter"] = (params) => {
-                  return (
-                    parseFloat(params.data[f.name]) ||
-                    (parseFloat(params.data[f.name]) == 0 ? 0 : "")
-                  );
-                };
-
-                column["comparator"] = numberComparator;
-                // Commented this out because it is removing precision with trailing zeros. Filtering and sorting seem to work fine
-                /*
-                // Setting the value getter ensures that the string typed cells are processed as numbers for filtering and sorting
-                column["valueGetter"] = (params) => {
-                  return (
-                    parseFloat(params.data[f.name]) ||
-                    (parseFloat(params.data[f.name]) == 0 ? 0 : "")
-                  );
-                };
-                */
-                break;
-            }
-            if (allStrings) {
-              column.sortable = false;
-              column.filter = "";
-            }
-            return column;
+            return generateAgGridCol(f, allStrings);
           });
         }
 
